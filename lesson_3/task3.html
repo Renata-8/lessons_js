@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 3</title>
+</head>
+
+<body>
+	<h1>Задача 3</h1>
+	<p>
+		Випадковим чином генерується число від 1 до 5. Спробуйте вгадати число за 2 спроби.
+	</p>
+	<script>
+		//вводимо змінні
+		let randomNumber = 1 + Math.floor(Math.random() * 5)
+		let enterNumber = parseInt(prompt("введіть число від 1 до 5:", "4"))
+		let result
+		//знаходимо результат
+		if (enterNumber < 1 || enterNumber > 5)
+			result = "Число не входить до діапазону від 1 до 5"
+		else if (randomNumber != enterNumber) {
+			result = `Ви не вгадали згенероване число ${randomNumber} `
+			enterNumber = parseInt(prompt("Ви не вгадали .Друга спроба. введіть число від 1 до 5:", "4"))
+		}
+		else result = `Ви вгадали це ${randomNumber} :)`
+		//виводимо результат
+		document.write(result)
+
+	</script>
+</body>
+
+</html>

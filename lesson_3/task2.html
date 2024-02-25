@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 2</title>
+</head>
+
+<body>
+	<h1>Задача 2</h1>
+	<p>
+		З клавіатури вводиться ціна товару і кількість грошей. Якщо грошей не вистачає то відмовляємо у покупці, інакше, якщо ще залишаються гроші, то пропонуємо купити лотерею за 4 грн.
+	</p>
+	<script>
+		//вводимо змінні
+		let priceProduct = parseFloat(prompt("введіть ціну товару:", "1"))
+		let amountMony = parseInt(prompt("введіть скількі у Вас грошей:", "100"))
+		const LOTERY = 4
+		let restMomey = amountMony - priceProduct
+		let result
+		//знаходимо результат
+		if ((amountMony > priceProduct) && (restMomey > 4))
+			result = `Дякуємо за покупку! У вас залишилось ${restMomey.toFixed(2)} пропонуємо купити лотерею за 4 грн.`
+		else if (priceProduct == amountMony)
+			result = "Дякуємо за покупку!"
+		else
+			result = "Вибачте. Вам не вистачає коштів."
+		//виводимо результат
+		document.write(result)
+	</script>
+</body>
+
+</html>
