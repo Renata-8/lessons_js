@@ -22,8 +22,8 @@
 		let vat = costProduct * VAT_PERCNTAGE
 		let costVatProduct = priceProduct * quantityProduct + vat
 		//виводимо результат
-		document.write(`загальна вартісь товару: ${costVatProduct} 
-		<br> ПДВ: ${vat}`)
+		document.write(`загальна вартісь товару: ${costVatProduct.toFixed(2)} 
+		<br> ПДВ: ${vat.toFixed(2)}`)
 
 
 	</script>
