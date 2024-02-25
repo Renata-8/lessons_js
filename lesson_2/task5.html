@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 5</title>
+</head>
+
+<body>
+	<h1>Задача 5</h1>
+	<p>
+		Дано кількість секунд, що пройшла від початку доби. Визначити скільки це годин і хвилин.
+	</p>
+	<p>Результати обчислення:</p>
+	<script>
+		//вводимо змінні
+		let second = parseFloat(prompt("введіть кількість секунд:", "20700"))
+		const secondInHour = 3600
+		const secondInMin = 60
+		//знаходимо результат
+		let resultHour = Math.floor(second / secondInHour)
+		let resultMin = Math.floor((second % secondInHour) / secondInMin)
+		//виводимо результат
+		document.write(`${second} секунд це ${resultHour} годин та ${resultMin} хвилин від початку доби`)
+	</script>
+</body>
+
+</html>

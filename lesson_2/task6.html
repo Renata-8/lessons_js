@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 6</title>
+</head>
+
+<body>
+	<h1>Задача 6</h1>
+	<p>
+		З клавіатури вводяться вартість товару та кількість одиниць 3 товарів. Обчислити вартість кожного товару окремо та загальну вартість. Вивести чек (як у супермаркеті) використовуючи елементи розмітки.
+	</p>
+	<p>Результати обчислення:</p>
+	<script>
+		//вводимо змінні
+		let priceProduktFirst = parseFloat(prompt("введіть вартість першого товару:", "1.2"))
+		let quantityProduktFirst = parseFloat(prompt("введіть кількість першого товару:", "1"))
+		let priceProduktSecond = parseInt(prompt("введіть вартість другого товару:", "1"))
+		let quantityProduktSecond = parseFloat(prompt("введіть кількість другого товару:", "2"))
+		let priceProduktThird = parseInt(prompt("введіть вартість третього товару:", "1"))
+		let quantityProduktThird = parseFloat(prompt("введіть кількість третього товару:", "3"))
+		const VAT_PERCNTAGE = 0.02
+
+
+		//знаходимо результат
+		let сostProduktFirst = priceProduktFirst * quantityProduktFirst
+		let сostProduktSecond = priceProduktSecond * quantityProduktSecond
+		let сostProduktThird = priceProduktThird * quantityProduktThird
+		let TotalсostProdukts = сostProduktFirst + сostProduktSecond + сostProduktThird
+		let vat = TotalсostProdukts * VAT_PERCNTAGE
+		let TotalVatсostProdukts = TotalсostProdukts + vat
+
+		//виводимо результат
+		document.write(`
+       <table >
+			<tr>
+            <th>Назва товару</th>
+            <th>Вартість</th>
+				<th>Кількість</th>
+				<th>Сумма</th>
+        </tr>
+        <tr>
+            <th>Товар 1</th>
+            <th>${priceProduktFirst}</th>
+				<th>${quantityProduktFirst}</th>
+				<th>${сostProduktFirst}</th>
+        </tr>
+        <tr>
+            <th>Товар 2</th>
+            <th>${priceProduktSecond}</th>
+				<th>${quantityProduktSecond}</th>
+				<th>${сostProduktSecond}</th>
+        </tr>
+        <tr>
+            <th>Товар 3</th>
+            <th>${priceProduktThird}</th>
+				<th>${quantityProduktThird}</th>
+				<th>${сostProduktThird}</th>
+        </tr>
+		  <tr>
+                        <td colspan='3'><strong>Ціна без ПДВ</strong></td>
+                        <td><strong> ${TotalсostProdukts}  </strong></td>
+        </tr>
+		  <tr>
+                        <td colspan='3'><strong>ПДВ</strong></td>
+                        <td><strong> ${vat.toFixed(2)}  </strong></td>
+        </tr>
+		  <tr>
+                        <td colspan='3'><strong>Ціна з ПДВ:</strong></td>
+                        <td><strong> ${TotalVatсostProdukts.toFixed(2)}  </strong></td>
+        </tr>
+        </table>
+       `)
+	</script>
+</body>
+
+</html>
