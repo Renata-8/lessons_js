@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 2</title>
+</head>
+
+<body>
+	<h1>Задача -1</h1>
+	<p>
+		Вивести на екран номери місяців весни і літа (від 3 до 8)
+	</p>
+	<script>
+		for (monthNumber = 3; monthNumber <= 8; monthNumber++) {
+			switch (monthNumber) {
+				case 3:
+				case 4:
+				case 5:
+					season = 'Весна'
+					break;
+				case 6:
+				case 7:
+				case 8:
+					season = 'Літо'
+					break;
+			}
+			document.write(`місяць ${monthNumber} пора року ${season}</br>`)
+		}
+
+	</script>
+</body>
+
+</html>

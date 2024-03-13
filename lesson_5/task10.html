@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		/* div {
+			display: flex;
+			gap: 25px;
+		} */
+	</style>
+	<title>Задача 10</title>
+</head>
+
+<body>
+	<h1>Задача 10</h1>
+	<p>
+		Знайти суму всіх непарних чисел, що знаходяться між заданими користувачем числами.
+	</p>
+	<p>Результати обчислення:</p>
+	<script>
+		let userNumberFist = parseInt(prompt("Введіть перше число:", "10"))
+		let userNumberSecond = parseInt(prompt("Введіть друге число:", "1"))
+
+		let sum = 0
+
+		if (userNumberFist > userNumberSecond) {
+			let tempNamber = userNumberFist
+			userNumberFist = userNumberSecond
+			userNumberSecond = tempNamber
+		}
+		for (let namber = userNumberFist + 1; namber < userNumberSecond; namber++) {
+			if (namber % 2 != 0)
+				sum += namber
+		}
+		document.write(`Сума всіх непарних чисел: ${sum}`);
+	</script>
+</body>
+
+</html>

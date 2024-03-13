@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 3</title>
+</head>
+
+<body>
+	<h1>Задача 3</h1>
+	<p>
+		Вивести таблицю з одним рядком і 7 стовпцями.
+	</p>
+	<p>Результати обчислення:</p>
+	<script>
+		document.write(`<table border=2px>`)
+		for (let column = 1; column <= 7; column++) {
+			document.write(`
+            <td>${column}</td>
+				`)
+		}
+		document.write(`</table>`)
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 5</title>
+</head>
+
+<body>
+	<h1>Задача 5</h1>
+	<p>
+		Вивести таблицю
+	</p>
+	<p>Результати обчислення:</p>
+	<script>
+		document.write(`<table border=2px>`)
+		countNumber = 0
+		for (let row = 1; row <= 3; row++) {
+			document.write(`<tr>`)
+			for (let column = 1; column <= 3; column++) {
+				countNumber++
+				document.write(`
+            <td>${countNumber}</td>
+				`)
+			}
+			document.write(`</tr>`)
+		}
+	</script>
+
+</body>
+</body>
+
+</html>

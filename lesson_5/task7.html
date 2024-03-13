@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		div {
+			display: flex;
+			gap: 25px;
+		}
+	</style>
+	<title>Задача 7</title>
+</head>
+
+<body>
+	<h1>Задача 7</h1>
+	<p>
+		Вивести на екран N абзаців (N вводиться користувачем) за зразком:
+	</p>
+	<p>Результати обчислення:</p>
+
+	<script>
+		let countParagraphs = parseInt(prompt("введіть кількість бзаців:", "5"))
+		//document.write(`<div>`)
+		for (let title = 1; title <= countParagraphs; title++) {
+			document.write(`<h1>Заголовок ${title}</h1>`)
+			for (let paragraph = 1; paragraph <= countParagraphs; paragraph++) {
+				document.write(`<p>Розділ, ${title} параграф ${paragraph}</p>`)
+			}
+		}
+		//document.write(`</div>`)
+	</script>
+
+</body>
+</body>
+
+</html>
