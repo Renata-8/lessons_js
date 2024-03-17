@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 4</title>
+</head>
+
+<body>
+	<h1>Задача 4</h1>
+	<p>
+		Створити функцію, яка для 3 заданих чисел знаходить одночасно декілька результатів: кількість парних, кількість додатних, кількість більших за 100.
+	</p>
+	<p>Результати обчислення:</p>
+	<script>
+		function getСalc() {
+			for (let i = 1; i <= 3; i++) {
+				const number = parseFloat(prompt(`Введіть будь-яке ${i} число:`))
+				if (number % 2 === 0)
+					sumPair++
+				if (number > 0)
+					sumPpositiv++
+				if (number > 100)
+					sumMore100++
+			}
+			return sumPair, sumPpositiv, sumMore100
+		}
+		let sumPair = 0
+		let sumPpositiv = 0
+		let sumMore100 = 0
+		getСalc()
+		document.write(`кількість парних: ${sumPair}<br>`)
+		document.write(`кількість додатних: ${sumPpositiv}<br>`)
+		document.write(`кількість більших за 100: ${sumMore100}<br>`)
+	</script>
+
+</body>
+</body>
+
+</html>

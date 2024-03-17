@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 5</title>
+</head>
+
+<body>
+	<h1>Задача 5</h1>
+	<p>
+		Створити окремі функції, які переводять:<br>
+		1) Сантиметри у дюйми;<br>
+		2) Кілограми у фунти;<br>
+		3) Кілометри у милі.
+	</p>
+	<p>Результати обчислення:</p>
+	<script>
+		function getCmToIn(cm, oneCm = 0.39370) {
+			return isIn = cm * oneCm
+		}
+		function getCmToIn(kg, oneKg = 2.2046) {
+			return lb = kg * oneKg
+		}
+		function getCmToIn(km, onekm = 0.62137) {
+			return mi = km * onekm
+		}
+		const cm = parseFloat(prompt("Введіть довжину у сантиметрах:", "1"))
+		const kg = parseFloat(prompt("Введіть вагу у килограмах:", "1"))
+		const km = parseFloat(prompt("Введіть довжину у кілометрах:", "1"))
+		document.write(`${cm} см- це ${getCmToIn(cm, oneCm = 0.39370)} дюймів: <br>`)
+		document.write(`${kg} кг - це ${getCmToIn(kg, oneKg = 2.2046)} фунтів<br>`)
+		document.write(`${km} км - це ${getCmToIn(km, onekm = 0.62137)} миль<br>`)
+
+
+		//in =cm * 0.39370
+//lb=kg*2,2046
+//mi=km*0.62137
+
+	</script>
+
+</body>
+</body>
+
+</html>

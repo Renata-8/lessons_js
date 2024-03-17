@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 3</title>
+</head>
+
+<body>
+	<h1>Задача 3</h1>
+	<p>
+		Створити окремі функції, які для 4 чисел знаходять:<br>
+		1)суму;<br>
+		2)добуток;<br>
+		3)середнє арифметичне;<br>
+		4)мінімальне значення.
+
+	</p>
+	<p>Результати обчислення:</p>
+	<script>
+		function getSum(a, b, c, d) {
+			return a + b + c + d
+		}
+		function getMmultiply(a, b, c, d) {
+			return a * b * c * d
+		}
+		function getAverage(a, b, c, d) {
+			return (a + b + c + d) / 4
+		}
+		function getMinValue(a, b, c, d) {
+			let min = Infinity
+			if (min > a) min = a
+			if (a > b) min = b
+			if (b > c) min = c
+			if (c > d) min = d
+			return min
+		}
+		let a = 1
+		let b = 2
+		let c = -3
+		let d = 4
+		document.write(`Сума: ${getSum(a, b, c, d)}<br>`)
+		document.write(`Добуток: ${getMmultiply(a, b, c, d)}<br>`)
+		document.write(`Середнє арифметичне: ${getAverage(a, b, c, d)}<br>`)
+		document.write(`Мінімальне значення: ${getMinValue(a, b, c, d)}<br>`)
+	</script>
+
+</body>
+
+</html>
