@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 5</title>
+</head>
+
+<body>
+	<h1>Задача 2</h1>
+	<p>
+		Дано масив, який зберігає кількість відвідувачів магазину протягом тижня. Вивести на екран:<br>
+		● номери днів, протягом яких кількість відвідувачів була меншою за 20;<br>
+		● номери днів, коли кількість відвідувачів була мінімальною;<br>
+		● номери днів, коли кількість відвідувачів була максимальною;<br>
+		● загальну кількість клієнтів у робочі дні та окремо загальну кількість днів на вихідних.
+	</p>
+	</p>
+	<p>Результати обчислення:</p>
+	<script>
+		let arrUseShop = [15, 25, 20, 17, 30, 20, 50]
+		//-----------------номери днів, протягом яких кількість відвідувачів була меншою за 20
+		function getNumbeMin20(arrUseShop) {
+			let arrNumbeMin20 = []
+			for (i = 0; i < arrUseShop.length; i++) {
+				if (arrUseShop[i] < 20) arrNumbeMin20.push(i + 1)
+			}
+			return arrNumbeMin20
+		}
+		//----------номери днів, коли кількість відвідувачів була мінімальною
+		function getNumbeMin(arrUseShop) {
+			let min = Infinity
+			for (let i = 0; i <= arrUseShop.length; i++) {
+				if (arrUseShop[i] < min) min = i + 1
+			}
+			return min
+		}
+		//----------номери днів, коли кількість відвідувачів була максимальною
+		function getNumbeMax(arrUseShop) {
+			let max = -Infinity
+			for (let i = 0; i <= arrUseShop.length; i++) {
+				if (arrUseShop[i] > max) max = i + 1
+			}
+			return max
+		}
+		//---------- кількість клієнтів у робочі дні
+		function getWorkDaySum(arrUseShop) {
+			let workDaySum = 0
+			for (let i = 0; i < 5; i++) {
+				workDaySum += arrUseShop[i]
+			}
+			return workDaySum
+		}
+		//--------------- кількість клієнтів на вихідних.
+		function getNotWorkDaySum(arrUseShop) {
+			let notWorkDaySum = 0
+			for (let i = 5; i < 7; i++) {
+
+				notWorkDaySum += arrUseShop[i]
+			}
+			return notWorkDaySum
+		}
+		let arrDayMin20 = getNumbeMin20(arrUseShop)
+		let numbeMin = getNumbeMin(arrUseShop)
+		let numbeMax = getNumbeMax(arrUseShop)
+		let workDay = getWorkDaySum(arrUseShop)
+		let notWorkDay = getNotWorkDaySum(arrUseShop)
+
+		document.write(`Кількість відвідувачів протягом тижня:  [${arrUseShop}] <br>`)
+		document.write(`Номер дня тижня протягом яких кількість відвідувачів була меншою за 20: [${arrDayMin20}] <br>`)
+		document.write(`Номер дня тижня коли кількість відвідувачів була мінімальною ${numbeMin}<br>`)
+		document.write(`Номер дня тижня коли кількість відвідувачів була максимальною ${numbeMax}<br>`)
+		document.write(`Загальна кількість клієнтів у робочі дні ${workDay} та у віхідні дні ${notWorkDay} <br>`)
+	</script>
+
+</body>
+
+</html>

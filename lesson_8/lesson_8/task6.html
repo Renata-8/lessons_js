@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 6</title>
+</head>
+
+<body>
+	<h1>Задача 6</h1>
+	<p>
+		Дано послідовність цін товарів та назв (у окремих масивах). Вивести на екран ті, які може собі дозволити користувач (кількість грошей задається).
+	</p>
+	<p>Результати обчислення:</p>
+	<script>
+		function getCanBuy(productPrices, productTitles, userMany) {
+			let arrCanBuy = []
+			for (i = 0; i < productPrices.length; i++) {
+				if (productPrices[i] <= userMany) {
+					arrCanBuy.push(productTitles[i])
+				}
+			}
+			return arrCanBuy
+		}
+		//--------змінні
+		const userMany = parseInt(prompt("Вкажіть кількість грошей:", "1000"))
+		let productPrices = [300, 20, 31]
+		let productTitles = ['chees', 'juice', 'bread']
+		let canBuy = getCanBuy(productPrices, productTitles, userMany)
+		let whatCanBuy
+		//----------чи вистачає грошей
+		if (canBuy.length === 0) whatCanBuy = 'У вас не вистачає грошей'
+		else
+			whatCanBuy = `Може досзолити собі купити: ${canBuy}`
+
+		document.write(`${whatCanBuy}`)
+
+
+	</script>
+
+</body>
+</body>
+
+</html>

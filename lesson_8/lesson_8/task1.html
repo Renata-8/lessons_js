@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 1</title>
+</head>
+
+<body>
+	<h1>Задача 1</h1>
+	<p>
+		Дано масив, який містить оцінки з К предметів. Знайти середній бал і з’ясувати до якої категорії він відноситься (відмінник, двійочник (має хоча би одну двійку), хорошист (оцінки добре і відмінно), трійочник(є хоча би одна трійка)).
+	</p>
+	<p>Результати обчислення:</p>
+	<script>
+		//---------повертає випадкові числа у діапазоні з 2 до 5
+		function getRandomScore(minScore = 2, maxScore = 5) {
+			return minScore + Math.floor(Math.random() * (maxScore - minScore + 1))
+		}
+		//-------формує масив з К предмітів та знаходить середній бал
+		function inputScore(k) {
+			let inScore = []
+			let sumScore = 0
+			for (i = 0; i < k; i++) {
+				inScore.push(getRandomScore(minScore = 2, maxScore = 5))
+				sumScore += inScore[i] / k
+			}
+			return [sumScore, inScore]
+		}
+		//------------------повертає категорію учня
+		function getMinScore(arrScore) {
+			let min = Infinity
+			for (let i = 0; i <= arrScore.length; i++) {
+				if (arrScore[1][i] < min) min = arrScore[1][i]
+			}
+			return min
+		}
+		//-----------визначення категорій учня
+		function getCategory(minScoreUser) {
+			let category
+			switch (minScoreUser) {
+				case 5: category = "Відмінник"
+					break;
+				case 4: category = "Хорошист"
+					break;
+				case 3: category = "Трійочник"
+					break;
+				default:
+					category = "Двійочник"
+					break;
+			}
+			return category
+		}
+		const k = parseInt(prompt("Введіть кількість предметів:", "3"))
+		let arrScore = inputScore(k)
+		let minScoreUser = getMinScore(arrScore)
+
+		document.write(`Оцінки з предметів: ${arrScore[1]}<br>`)
+		document.write(`Середній бал: ${arrScore[0].toFixed(2)}<br>`)
+		document.write(`Учень є: ${getCategory(minScoreUser)}`)
+	</script>
+
+</body>
+
+</html>

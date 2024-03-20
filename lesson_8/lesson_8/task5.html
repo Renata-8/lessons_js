@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 5</title>
+</head>
+
+<body>
+	<h1>Задача 5</h1>
+	<p>
+	<p>
+		Дано послідовність оцінок учня. Підрахувати кількість:<br>
+		1) двійок<br>
+		2) кількість хороших оцінок (добре, відмінно);<br>
+		3) кількість оцінок, які нижче середнього.
+	</p>
+	</p>
+	<p>Результати обчислення:</p>
+	<script>
+		let studentScores = [2, 3, 5, 3, 4, 5]
+		//---------кількість двійок
+		function getCountTwos(studentScores) {
+			let countTwos = 0
+			for (let i = 0; i < studentScores.length; i++) {
+				if (studentScores[i] === 2) {
+					countTwos++
+				}
+			}
+			return countTwos
+		}
+		//-----------кількість оцінок білших за 4,5
+		function getCountGoodScores(studentScores) {
+			let countGoodScores = 0
+			for (let i = 0; i < studentScores.length; i++) {
+				if (studentScores[i] === 4 || studentScores[i] === 5) {
+					countGoodScores++
+				}
+			}
+			return countGoodScores
+		}
+		//------------ середнє бал усіх оцінок
+		function getAverageScores(studentScores) {
+			let countAverageScores = 0
+			for (let i = 0; i < studentScores.length; i++) countAverageScores += studentScores[i] / studentScores.length
+			return countAverageScores
+		}
+		//------------------кількість оцінок нижчи за середній бал
+		function getCountLessAverage(studentScores) {
+			let count = 0
+			for (let i = 0; i < studentScores.length; i++) {
+				if (studentScores[i] < averageScores) {
+					count++
+				}
+			}
+			return count
+		}
+		let averageScores = getAverageScores(studentScores)
+		document.write(`Кількість двійок: ${getCountTwos(studentScores)}<br>`);
+		document.write(`Кількість хороших оцінок: ${getCountGoodScores(studentScores)}<br>`);
+		document.write(`Кількість оцінок, які нижче середнього: ${getCountLessAverage(studentScores)}<br>`);
+		//document.write(`Середній бал: ${getAverageScores(studentScores).toFixed(2)}`)
+
+
+
+	</script>
+
+</body>
+</body>
+
+</html>
