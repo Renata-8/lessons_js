@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 4</title>
+</head>
+
+<body>
+	<h1>Задача 4</h1>
+	<p>
+		Дано послідовність номерів автомобілів. Підрахувати кількість номерів, які :<br>
+		• починаються на букву «А»;<br>
+		• перша і остання літери співпадають;<br>
+		• складаються з більше ніж 5 символів;
+	<p>Результати обчислення:</p>
+	<script>
+		//----------------починаються на букву «А»
+		function getFistLetterA(arrNamberCar) {
+			let sumA = 0;
+			let numberCar;
+			for (let i = 0; i < arrNamberCar.length; i++) {
+				numberCar = arrNamberCar[i];
+				if (numberCar[0] === "A") sumA++;
+			}
+			return sumA;
+		}
+		//--------------перша і остання літери співпадають
+		function getFistLastLetterSame(arrNamberCar) {
+			let sum = 0;
+			let numberCar;
+			for (let i = 0; i < arrNamberCar.length; i++) {
+				numberCar = arrNamberCar[i];
+				if (numberCar[0] === numberCar[numberCar.length - 1]) sum++;
+			}
+			return sum;
+		}
+		//-------------складаються з більше ніж 5 символів
+		function getMoreFiveLetter(arrNamberCar) {
+			let sum = 0;
+			let numberCar;
+			for (let i = 0; i < arrNamberCar.length; i++) {
+				numberCar = arrNamberCar[i];
+				if (numberCar.length >= 5) sum++;
+			}
+			return sum;
+		}
+
+
+		let arrNamberCar = ['AA9265AK', 'AA0123KA', 'AA7734HE', 'AHI', 'AA2005AA']
+
+		document.write(`Кількість номерів які починаються на букву А: ${getFistLetterA(arrNamberCar)}<br>`)
+		document.write(`Кількість номерів перша і остання літери співпадають: ${getFistLastLetterSame(arrNamberCar)}<br>`)
+		document.write(`Кількість номерів які складаються з більше ніж 5 символів: ${getMoreFiveLetter(arrNamberCar)}<br>`)
+	</script>
+
+</body>
+</body>
+
+</html>
