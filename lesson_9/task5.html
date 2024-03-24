@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 5</title>
+</head>
+
+<body>
+	<h1>Задача 5</h1>
+	<p>
+	<p>
+		Дано масив елементів. Знайти добуток додатних елементів
+	</p>
+	</p>
+	<p>Результати обчислення:</p>
+	<script>
+		const array = [2, -40, 3, -10, 25, 3, -10, 30, 4, 6, -570]
+		document.write(`добуток додатних елементів масиву [${array}]: `)
+		let multiplication = 1
+		for (let el of array) {
+			if (el > 0) multiplication *= el
+
+		}
+		document.write(`${multiplication},`)
+	</script>
+
+</body>
+</body>
+
+</html>

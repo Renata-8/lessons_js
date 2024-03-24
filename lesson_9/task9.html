@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 8</title>
+</head>
+
+<body>
+	<h1>Задача 8</h1>
+	<p>
+		Дано масив імен. Сформувати масив з перших літер цих імен
+	</p>
+	<p>Результати обчислення:</p>
+	<script>
+		const arrUsersName = ["Alex", "Ivan", "Katy", "Dmitro", "Ivan", "Ivan", "Slavik"]
+		function getUsersLetters(arrUsersName) {
+			return arrUsersLetters = arrUsersName.map((name) => name[0]);
+		}
+		let usersLetters = getUsersLetters(arrUsersName)
+		document.write(`Дано масив імен [${arrUsersName}] <br> `)
+		document.write(`масив з перших літер цих імен: [${usersLetters}]`)
+	</script>
+
+</body>
+</body>
+
+</html>

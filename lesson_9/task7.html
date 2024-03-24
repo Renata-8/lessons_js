@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 7</title>
+</head>
+
+<body>
+	<h1>Задача 7</h1>
+	<p>
+		Дано масив цін. Змінити цей масив так, що на ціни товарів, які більші за 1000 грн. дати 30% знижки.
+	</p>
+	<p>Результати обчислення:</p>
+	<script>
+		const price = [4450, 250, 750, 1200, 1750, 30, 5000, 900, 150, 6, 1020]
+		let discountPrice = 1000
+		let discount = 0.7
+		function getPrice(price, discountPrices, discounts) {
+			document.write(`масив який дно [${price}] <br> `)
+			price.forEach((el, ind) => {
+				if (el > discountPrice) price[ind] = price[ind] * discount
+			});
+			return price
+		}
+		let newPrice = getPrice(price)
+		document.write(`товари, які більші за 1000 грн. 30% знижки: [${newPrice}]`)
+	</script>
+
+</body>
+</body>
+
+</html>
