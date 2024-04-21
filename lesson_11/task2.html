@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 5</title>
+</head>
+
+<body>
+	<h1>Задача 2</h1>
+	<p>
+		Дано інформацію про прибуток К магазинів протягом тижня. Знайти :
+	</p>
+	<ol>
+		<li>загальний прибуток кожного масиву за тиждень;</li>
+		<li>загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і т.д.);</li>
+		<li>загальний прибуток за робочі дні</li>
+		<li>загальний прибуток за вихідні дні</li>
+		<li>максимальний прибуток за середу</li>
+		<li>сформувати загальний список (одновимірний масив) зі значенням, які що більші за 200</li>
+		<li>відсортувати кожен тиждень за зростанням</li>
+		<li>відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при порівнянні рядків потрібно порівнювати максимальні елементи у кожному з цих рядків</li>
+		<li>упорядкувати тижні (рядки) за спаданням суми елементів у рядку (тобто при порівнянні двох рядків треба знайти суму кожного з рядків і порівнювати ці суми, на основі цих сум буде зрозуміло, який з елементів повинен іти раніше).</li>
+	</ol>
+	<p>Результати обчислення:</p>
+	<script>
+		let arr = [
+			[38, 39, 40, 41, 202, 43, 44],
+			[60, 250, 62, 63, 76, 77, 78],
+			[40, 41, 42, 350, 44, 45, 46],
+			[56, 57, 58, 59, 60, 210, 62],
+		]
+		document.write(`Масив: ${JSON.stringify(arr)} <br>`)
+		//---------------загальний прибуток кожного масиву за тиждень
+
+		let shopNumber = 0
+		for (const row of arr) {
+			let profitWeek = 0
+			shopNumber++
+			for (const el of row) {
+				profitWeek += el
+			}
+			document.write(`1. загальний прибуток магазину № ${shopNumber} за тиждень становить ${profitWeek} <br>`)
+		}
+
+
+		//----------загальний прибуток усіх магазинів по дням (загальний прибуток усіх магазинів за понеділок, за вівторок, і т.д.)
+
+		let weekNumber = 0
+		for (let colIndex = 0; colIndex < arr[0].length; colIndex++) {
+			let sumProfitOfDay = 0
+			weekNumber++
+			for (let rowIndex = 0; rowIndex < arr.length; rowIndex++) {
+				sumProfitOfDay += arr[rowIndex][colIndex]
+
+			}
+			document.write(`2. загальний прибуток магазину за ${weekNumber} тиждень становить ${sumProfitOfDay} <br>`)
+		}
+		//---------------загальний прибуток за робочі дні
+
+		let sumProfitWorksDay = 0
+		let worksDay = 0
+		for (let rowIndex = 0; rowIndex < arr.length; rowIndex++) {
+			for (let columnIndex = 0; columnIndex < 5; columnIndex++) {
+				sumProfitWorksDay += arr[rowIndex][columnIndex]
+				worksDay++
+			}
+		}
+		document.write(`3. загальний прибуток за   ${worksDay} робочих днів становить ${sumProfitWorksDay} <br>`)
+		//--------------загальний прибуток за вихідні дні
+		let sumProfitWeekends = 0
+		let weekendsNumber = 0
+		for (let rowIndex = 0; rowIndex < arr.length; rowIndex++) {
+			for (let columnIndex = 5; columnIndex < 7; columnIndex++) {
+				sumProfitWeekends += arr[rowIndex][columnIndex]
+				weekendsNumber++
+			}
+		}
+		document.write(`4. загальний прибуток за   ${weekendsNumber} вихідних днів становить ${sumProfitWeekends} <br>`)
+		//--------------------максимальний прибуток за середу
+
+		let maxProfitOfWednesday = -Infinity
+		let datWeek = 2
+		for (let rowIndex = 0; rowIndex < arr.length; rowIndex++) {
+			if (arr[rowIndex][datWeek] > maxProfitOfWednesday) maxProfitForWednesday = arr[rowIndex][datWeek]
+		}
+
+		document.write(`5. максимальний прибуток за середу становить ${maxProfitForWednesday} <br>`)
+		//--------------------сформувати загальний список (одновимірний масив) зі значенням, які що більші за 200
+		let arrMore200 = []
+		// for (let rowIndex = 0; rowIndex < arr.length; rowIndex++) {
+		// 	for (let columnIndex = 0; columnIndex < arr[rowIndex].length; columnIndex++) {
+		// 		if (arr[rowIndex][columnIndex] > 200) arrMore200.push(arr[rowIndex][columnIndex])
+		// 	}
+		// }
+
+		arr.flat().forEach(el => {
+			if ((el) > 200)
+				arrMore200.push(el)
+		}
+		)
+		document.write(`6. список (одновимірний масив) зі значенням, які що більші за 200 ${arrMore200} <br>`)
+		//--------------------відсортувати кожен тиждень за зростанням
+		// let sortedArrAscending = arr.map((row) => {
+		// 	return row.slice().sort((a, b) => a - b)
+		// })
+		let sortedArrAscending = [...arr]
+		arr.sort((a, b) => a - b)
+		document.write(`7. масив кожен тиждень за зростанням: ${JSON.stringify(sortedArrAscending)} <br>`)
+		//--------------------відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку), тобто при порівнянні рядків потрібно порівнювати максимальні елементи у кожному з цих рядків
+		let sortArrDescending = [...arr]
+		sortArrDescending.sort((arrA, arrB) => Math.max(...arrB) - Math.max(...arrA));
+		document.write(`8. відсортувати тижні (рядки) за спаданням максимального елементи у цьому тижні (рядку): ${JSON.stringify(sortArrDescending)}<br>`)
+		//--------------------упорядкувати тижні (рядки) за спаданням суми елементів у рядку 
+		let sortArrDescendingSumWeek = [...arr]
+		sortArrDescendingSumWeek.sort((arrA, arrB) => arrB.reduce((sum, el) => sum + el) - arrA.reduce((sum, el) => sum + el))
+		document.write(`9. упорядкувати тижні (рядки) за спаданням суми елементів у рядку : ${JSON.stringify(sortArrDescendingSumWeek)}<br>`)
+
+	</script>
+
+</body>
+
+</html>
