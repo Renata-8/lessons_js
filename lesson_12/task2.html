@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 5</title>
+</head>
+
+<body>
+	<h1>Задача 2</h1>
+	<p>
+		Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів та порівнянь чисел під час сортування змішуванням.
+	<p>Результати обчислення:</p>
+	<script>
+		//-------формує масив з 30  випадкових цілих чисел від 0 до 5
+		// function createArray(k) {
+		// 	let array = []
+		// 	for (i = 0; i < 30; i++) {
+		// 		let el = Math.floor(Math.random() * 6)
+		// 		array.push(el)
+		// 	}
+		// 	return array
+		// }
+		// let arrayNew = createArray()
+		let array = []
+		let arraySort = [...array]
+		//-------------------сортування змішуванням
+		let exchange = 0
+		let comparison = 0
+		let leftIndex = 0
+		let rightIndex = arraySort.length - 1
+		while (leftIndex < rightIndex) {
+			//--- зліва-направо
+			let changed = false
+			for (let i = leftIndex + 1; i <= rightIndex; i++) {
+				exchange++
+				if (arraySort[i - 1] > arraySort[i]) {
+					let temp = arraySort[i - 1]
+					arraySort[i - 1] = arraySort[i]
+					arraySort[i] = temp
+					changed = true
+					comparison++
+				}
+			}
+			rightIndex--
+			if (changed === false) break
+			//---- справа-наліво
+			changed = false
+			for (let i = rightIndex; i > leftIndex; i--) {
+
+				exchange++
+				if (arraySort[i - 1] > arraySort[i]) {
+					let temp = arraySort[i - 1]
+					arraySort[i - 1] = arraySort[i]
+					arraySort[i] = temp
+					changed = true
+					comparison++
+				}
+			}
+			leftIndex++
+			if (changed === false) break
+
+		}
+
+		document.write(`Дано масив: ${array}<br>`)
+		document.write(`Відсортованій масив: ${arraySort}<br>`)
+		document.write(`обмінів: ${comparison}<br>`)
+		document.write(`порівнянь: ${exchange}`)
+	</script>
+
+</body>
+
+</html>

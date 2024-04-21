@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 5</title>
+</head>
+
+<body>
+	<h1>Задача 5</h1>
+	<p>
+	<p>
+		Дано масив імен. Застосовуючи відповідне сортування та бінарний пошук визначити, чи є у масиві ім’я «Olga» і під яким індексом.
+	</p>
+	</p>
+	<p>Результати обчислення:</p>
+	<script>
+		let peopleNames = ["Alexander", "Emily", "Max", "Anna", "Michael", "Olga", "Sophia", "John", "Victoria", "James"]
+		peopleNames.sort()
+		const searchName = "Olga"
+		function getFindName(peopleNames, searchName) {
+			let start = 0
+			let end = peopleNames.length - 1
+			while (start < end) {
+				const middle = Math.floor((start + end) / 2)
+				if (peopleNames[middle] === searchName) return document.write(`ім’я  ${searchName} у масиві під яким індексом ${middle}`)
+				if (peopleNames[middle] < searchName) start = middle + 1
+				if (peopleNames[middle] > searchName) end = middle - 1
+			}
+			return document.write('ім’я «Olga» у масиві не знайдено')
+		}
+		document.write(`Дано масив: [${peopleNames}] <br> `)
+		getFindName(peopleNames, searchName)
+
+
+	</script>
+
+</body>
+</body>
+
+</html>

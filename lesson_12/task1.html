@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 1</title>
+</head>
+
+<body>
+	<h1>Задача 1</h1>
+	<p>
+		Дано масив 30 випадкових цілих чисел. Підрахувати скільки було обмінів та порівнянь чисел під час сортування бульбашкою
+	</p>
+	<p>Результати обчислення:</p>
+	<script>
+		//---------
+		//-------формує масив з 30  випадкових цілих чисел від 0 до 5
+		function createArray(k) {
+			let array = []
+			for (i = 0; i < 30; i++) {
+				let el = Math.floor(Math.random() * 100)
+				array.push(el)
+			}
+			return array
+		}
+		let array = createArray()
+		//-------------------сортування бульбашкою
+		let arraySort = [...array]
+		let chanched
+		let exchange = 0
+		let comparison = 0
+		do {
+			chanched = false
+			for (let i = 0; i < arraySort.length; i++) {
+				exchange++
+				if (arraySort[i - 1] > arraySort[i]) {
+					let tmp = arraySort[i - 1]
+					arraySort[i - 1] = arraySort[i]
+					arraySort[i] = tmp
+					comparison++
+					chanched = true
+				}
+			}
+		}
+		while (chanched)
+		document.write(`Дано масив: ${array}<br>`)
+		document.write(`Відсортованій масив: ${arraySort}<br>`)
+		document.write(`обмінів: ${comparison}<br>`)
+		document.write(`порівнянь: ${exchange}`)
+	</script>
+
+</body>
+
+</html>

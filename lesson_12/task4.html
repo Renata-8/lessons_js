@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 4</title>
+</head>
+
+<body>
+	<h1>Задача 4</h1>
+	<p>
+		Для розглянутих методів сортування спробувати вивести етапи сортування шляхом виведення відповідних таблиць за зразком. Тобто кожного разу після обміну елементів вивести поточний стан масиву на екран (стрілки не потрібні).
+	<p>Результати обчислення:</p>
+	<script>
+		let array = [3, 5, 1, 4, 2]
+		let arraySortBubble = [...array]
+		document.write(`Дано масив: ${array}<br>`)
+		document.write(`сортування бульбашкою:<br>`)
+		//-------------------сортування бульбашкою
+		let chanched
+		do {
+			chanched = false
+			for (let i = 0; i < arraySortBubble.length; i++) {
+				if (arraySortBubble[i - 1] > arraySortBubble[i]) {
+					let tmp = arraySortBubble[i - 1]
+					arraySortBubble[i - 1] = arraySortBubble[i]
+					arraySortBubble[i] = tmp
+					chanched = true
+					document.write(`[${arraySortBubble}]<br>`)
+				}
+			}
+		}
+		while (chanched)
+		//-------------------сортування змішуванням
+		let arraySortShaker = [...array]
+		let leftIndex = 0
+		let rightIndex = arraySortShaker.length - 1
+		document.write(`сортування змішуванням:<br>`)
+		while (leftIndex < rightIndex) {
+			//--- зліва-направо
+			let changed = false
+			for (let i = leftIndex + 1; i <= rightIndex; i++) {
+				if (arraySortShaker[i - 1] > arraySortShaker[i]) {
+					let temp = arraySortShaker[i - 1]
+					arraySortShaker[i - 1] = arraySortShaker[i]
+					arraySortShaker[i] = temp
+					changed = true
+					document.write(`[${arraySortShaker}]<br>`)
+				}
+			}
+			rightIndex--
+			if (changed === false) break
+			//---- справа-наліво
+			changed = false
+			for (let i = rightIndex; i > leftIndex; i--) {
+				if (arraySortShaker[i - 1] > arraySortShaker[i]) {
+					let temp = arraySortShaker[i - 1]
+					arraySortShaker[i - 1] = arraySortShaker[i]
+					arraySortShaker[i] = temp
+					changed = true
+					document.write(`[${arraySortShaker}]<br>`)
+				}
+			}
+			leftIndex++
+			if (changed === false) break
+		}
+		//-------------------сортування включеннями
+		let arraySortInsertion = [...array]
+		document.write(`сортування включеннями:<br>`)
+		for (var i = 0; i < arraySortInsertion.length; i++) {
+			let key = arraySortInsertion[i]
+			let j = i - 1;
+			while (j >= 0 && arraySortInsertion[j] > key) {
+				arraySortInsertion[j + 1] = arraySortInsertion[j]
+				j--
+				document.write(`[${arraySortInsertion}]<br>`)
+			}
+			arraySortInsertion[j + 1] = key
+			document.write(`[${arraySortInsertion}]<br>`)
+		}
+		document.write(`Відсортованій масив: ${arraySortInsertion}<br>`)
+	</script>
+	</script>
+
+</body>
+</body>
+
+</html>
