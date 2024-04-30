@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 5</title>
+</head>
+
+<body>
+	<h1>Задача 2</h1>
+	<p>
+		Розробити функцію, у яку передають об’єкт (день, місяць, рік). Визначити, який буде рік через N місяців.
+	<p>Результати обчислення:</p>
+	<script>
+		let data = {
+			day: 1,
+			month: 5,
+			year: 2010
+		}
+
+		function getNewUserYear(data, N) {
+			return Math.floor(((data.month-1) + N) / 12) + data.year
+		}
+		//let getNewUserYear = (data, N) => Math.floor((data.month + N) / 12) + data.year
+
+		let N = parseInt(prompt("введіть кількість місяців:", "5"))
+		let newUserYear = getNewUserYear(data, N)
+
+		document.write(`Задано рік: ${data.year}<br>`)
+		document.write(`рік через ${N} місяців буде: ${newUserYear}<br>`)
+		console.log(data)
+	</script>
+
+</body>
+
+</html>
