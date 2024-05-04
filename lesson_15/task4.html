@@ -39,10 +39,9 @@
 			getBanerRandom(banerAndUrl) {
 				return Math.floor(Math.random() * ((this.banerAndUrl.length - 1) + 1))
 			}
-			//Метод виведення випадкового банера
-			showRandomBaner() {
+			toString() {
 				let baner = this.getBanerRandom(banerAndUrl)
-				document.write(`<a href="${this.banerAndUrl[baner].url}"><img src="${this.banerAndUrl[baner].name}"></a>`)
+				return `<a href="${this.banerAndUrl[baner].url}"><img src="${this.banerAndUrl[baner].name}"></a>`
 			}
 		}
 		const banerAndUrl = [
@@ -64,7 +63,7 @@
 			}
 		]
 		let outputBaner = new Baner(banerAndUrl)
-		outputBaner.showRandomBaner()
+		document.write(outputBaner)
 
 	</script>
 
