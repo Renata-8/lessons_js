@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 3</title>
+</head>
+
+<body>
+	<h1>Задача 3</h1>
+	<p>
+		Розробити клас MultChecker для перевірки таблиці множення
+	</p>
+	<table border="2px">
+		<tr>
+			<td>Поля(властивості)</td>
+			<td>Число, яке перевіряємо (наприклад, перевірка частини таблиці множення на 7)<br>
+				Кількість правильних відповідей<br>
+				Кількість неправильних відповідей<br>
+
+			</td>
+		</tr>
+		<tr>
+			<td>Методи</td>
+			<td>Генерування прикладу (метод випадковим чином визначає друге число, перше число фіксоване)<br>
+				Перевірка правильності вказаної відповіді<br>
+				render - виведення інформації про тестування на екран<br>
+			</td>
+		</tr>
+	</table>
+	<p>Результати обчислення:</p>
+	<script>
+		class MultChecker {
+			constructor(number) {
+				//---опис полів
+				this.numberOne = number //7
+				this.answersCountCorrect = 0
+				this.answersCountNotCorrect = 0
+				// Число, яке перевіряємо (наприклад, перевірка частини таблиці множення на 7)
+				// Кількість правильних відповідей
+				// Кількість неправильних відповідей
+			}
+			//---опис методів
+			// Генерування прикладу (метод випадковим чином визначає друге число, перше число фіксоване)
+			getNumberSecond(min = 1, max = 10) {
+				const namberRandom = Math.floor(Math.random() * (max - min + 1)) + min
+				return this.numberSecond = namberRandom
+			}
+			// Перевірка правильності вказаної відповіді
+			isAnswersCorrect() {
+				let answer
+				let answersUser = parseInt(prompt(`${this.numberOne} * ${this.numberSecond} = ? Введіть відповідь`))
+				if (answersUser == this.numberOne * this.numberSecond) {
+					answer = alert('Відповідь вірна')
+					this.answersCountCorrect++
+				}
+				else {
+					answer = alert('Відповідь не вірна')
+					this.answersCountNotCorrect++
+				}
+				return answer
+			}
+			// render - виведення інформації про тестування на екран
+			render() {
+				document.write(`Кількість правильних відповідей: ${this.answersCountCorrect} <br>`);
+				document.write(`Кількість неправильних відповідей: ${this.answersCountNotCorrect} <br>`);
+			}
+		}
+		let multChecker = new MultChecker(parseInt(prompt("Введіть число")))
+		let userConfirm = true
+		do {
+			multChecker.getNumberSecond()
+			multChecker.isAnswersCorrect()
+			userConfirm = confirm("Продовжувати?")
+		} while (userConfirm);
+		multChecker.render()
+		console.log(multChecker)
+	</script>
+
+</body>
+</body>
+
+</html>

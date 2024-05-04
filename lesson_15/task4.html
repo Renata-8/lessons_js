@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 4</title>
+</head>
+
+<body>
+	<h1>Задача 4</h1>
+	<p>
+	<p>
+		Розробити клас Baner
+	</p>
+	<table border="2px">
+		<tr>
+			<td>Поля</td>
+			<td>
+				Масив об’єктів ( графічних зображень та посилань на сайти)
+			</td>
+		</tr>
+		<tr>
+			<td>Методи</td>
+			<td>Метод випадкового вибору об’єкта (графічного зображення та посилання)<br>
+				Метод виведення випадкового банера
+			</td>
+		</tr>
+	</table>
+	<p>Результати обчислення:</p>
+	<script>
+		class Baner {
+			constructor(banerAndUrl) {
+				//---опис полів
+				this.banerAndUrl = banerAndUrl
+			}
+			//---опис методів
+			// Метод випадкового вибору об’єкта (графічного зображення та посилання)
+			getBanerRandom(banerAndUrl) {
+				return Math.floor(Math.random() * ((this.banerAndUrl.length - 1) + 1))
+			}
+			//Метод виведення випадкового банера
+			showRandomBaner() {
+				let baner = this.getBanerRandom(banerAndUrl)
+				document.write(`<a href="${this.banerAndUrl[baner].url}"><img src="${this.banerAndUrl[baner].name}"></a>`)
+			}
+		}
+		const banerAndUrl = [
+			{
+				name: "https://www.google.co.uk/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+				url: "https://www.google.co.uk/",
+			},
+			{
+				name: "https://static.cdninstagram.com/rsrc.php/v3/yM/r/8n91YnfPq0s.png",
+				url: "https://www.instagram.com/",
+			},
+			{
+				name: "https://static.xx.fbcdn.net/rsrc.php/y1/r/4lCu2zih0ca.svg",
+				url: "https://www.facebook.com/",
+			},
+			{
+				name: "https://upst.fwdcdn.com/img/top-logo-ua-mod3.gif",
+				url: "https://www.ukr.net/",
+			}
+		]
+		let outputBaner = new Baner(banerAndUrl)
+		outputBaner.showRandomBaner()
+
+	</script>
+
+</body>
+</body>
+
+</html>

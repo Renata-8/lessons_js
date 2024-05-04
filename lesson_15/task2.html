@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 2</title>
+</head>
+
+<body>
+	<h1>Задача 2</h1>
+	<p>
+		Створити об’єкт «Авто».
+	</p>
+	<table border="2px">
+		<tr>
+			<td>Авто</td>
+		</tr>
+		<tr>
+			<td>Поля(властивості)</td>
+			<td>Марка,
+				Розмір бака,
+				Кількість наявних літрів,
+				Кількість місць,
+				Кількість пасажирів
+			</td>
+		</tr>
+		<tr>
+			<td>Методи (дії)</td>
+			<td>Заправка на вказану кількість літрів,
+				Виведення кількості пасажирів,
+				Додавання пасажирів,
+				Висадка пасажирів
+			</td>
+		</tr>
+	</table>
+	<p>Результати обчислення:</p>
+	<script>
+
+
+		let car = {
+			brand: "Toyota",
+			tankSize: 50,
+			haveLiters: 20,
+			numSeats: 5,
+			numPassengers: 3,
+			//---Заправка на вказану кількість літрів
+			getRefuelingTheCar: function (liters) {
+				let fuel = ''
+				let freeTank = this.tankSize - this.haveLiters
+				if (freeTank < this.tankSize && freeTank >= liters)
+					fuel = `Машину заправлено на ${liters} літрів, у баку ${this.haveLiters + liters} літрів`
+				else fuel = 'Забагато пального'
+				return fuel
+			},
+			//---Виведення кількості пасажирів
+			toString: function () {
+				return `Кількість пасажирів у автомобілі: ${this.numPassengers}`
+			},
+			//---Додавання пасажирів
+			getAddPassenegers: function (passeneger) {
+				let passenegers = 0
+				let newNumPassenegers = this.numPassengers + passeneger
+				if (newNumPassenegers <= this.numSeats) {
+					passenegers = this.numPassengers + passeneger
+					this.numPassengers += passeneger
+				}
+				else passenegers = 'не вистачає місця'
+				return passenegers
+			},
+			//---Висадка пасажирів
+			gerRemovalPassengers: function (passeneger) {
+				let passenegers = 0
+				if (this.numPassengers > passeneger) {
+					passenegers = this.numPassengers - passeneger
+					this.numPassengers -= passeneger
+				}
+				else passenegers = 'нема такої кількості пасажирів'
+				return passenegers
+			}
+		}
+		let refuelingTheCar = car.getRefuelingTheCar(30)
+		let numPassengers = car.toString()
+		let addPassenegers = car.getAddPassenegers(2)
+		let removalPassenegers = car.gerRemovalPassengers(3)
+		document.write(`${refuelingTheCar}<br>
+		${numPassengers}<br>
+		Кількість пасажирів у автомобілі після додавання: ${addPassenegers}<br>
+		Кількість пасажирів у автомобілі після висадки: ${removalPassenegers}<br>`)
+		//document.write(`у машині ${car.numPassengers} пасажира`)
+		//document.write(`у машині ${car.numPassengers} пасажира`)
+		console.log(car)
+	</script>
+
+</body>
+
+</html>

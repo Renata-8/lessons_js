@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 0</title>
+</head>
+
+<body>
+	<h1>Задача 0</h1>
+	<div>
+		<p>
+			Дано два об’єкта. Обидва містять масив цілих чисел. При цьому у одному з них є функція знаходження суми, а у іншому – функція для знаходження добутку тих, які знаходяться між заданими мінімальним і максимальних значенням.
+		</p>
+		<p>Використати обидва методи стосовно обидвох об’єктів (використати call, apply)</p>
+	</div>
+	<p>Результати обчислення:</p>
+	<script>
+		//---------
+		let object1 = {
+			arr: [15, 22, 13, 18, 2],
+			getSum: function () {
+				return this.arr.reduce((prevSum, el) => prevSum + el)
+
+			}
+		}
+		let object2 = {
+			arr: [15, 42, 3, 4, 2],
+			getMinMaxMultiplication: function (min, max) {
+				return this.arr.reduce((prevValue, el) => (el > min && el < max) ? prevValue * el : prevValue, 1)
+			}
+		}
+		let sum1 = object1.getSum()
+		let sum2 = object1.getSum.call(object2)
+
+		let minMax1 = object2.getMinMaxMultiplication.apply(object1, [13, 22])
+		let minMax2 = object2.getMinMaxMultiplication(2, 16)
+
+		document.write(`Масив №1 [${object1.arr}]<br>`)
+		document.write(`Масив №2 [${object2.arr}]<br>`)
+		document.write(`Сума масива №1 [${sum1}]<br>`)
+		document.write(`Сума масива №2 [${sum2}]<br>`)
+		document.write(`Масив №1 добуток у діапазоні від 13 до 22 [${minMax1}]<br>`)
+		document.write(`Масив №2 добуток у діапазоні від 2 до 16 [${minMax2}]<br>`)
+	</script>
+
+</body>
+
+</html>

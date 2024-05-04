@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 5</title>
+</head>
+
+<body>
+	<h1>Задача 2</h1>
+	<p>
+		Створити об’єкт «Тир». У масиві зберігаються 1, якщо у цьому квадраті є заєць і 0 в іншому випадку.
+	</p>
+	<table border="2px">
+		<tr>
+			<td>Тир</td>
+		</tr>
+		<tr>
+			<td>Поля(властивості)</td>
+			<td>Масив, у якому зберігається поле з зайцями</td>
+		</tr>
+		<tr>
+			<td>Методи (дії)</td>
+			<td>Метод пострілу (задається позиція пострілу) Виведення ігрового поля </td>
+		</tr>
+	</table>
+	<p>Результати обчислення:</p>
+	<script>
+		let object1 = {
+			arr: [0, 1, 0, 0, 1, 0, 0, 0,],
+			//--Метод пострілу
+			getShooting: function () {
+				const userShot = parseInt(prompt('Ведіть число від 1 до 9')) - 1
+				let res
+				if (this.arr[userShot] === 1) {
+					this.arr[userShot] = 'X'
+					res = alert('Ви влучили!')
+				}
+				else {
+					this.arr[userShot] = ':('
+					res = alert('Ви не влучили')
+				}
+				return res
+			}
+		}
+		object1.getShooting()
+		document.write(`Масив з заяйями: [${object1.arr}]<br>`)
+	</script>
+
+</body>
+
+</html>

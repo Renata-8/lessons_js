@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 5</title>
+</head>
+
+<body>
+	<h1>Задача 5</h1>
+	<p>
+		Розробити клас «Керівник танців»
+	</p>
+	<table border="2px">
+		<tr>
+			<td>Поля</td>
+			<td>Масив імен хлопців<br>
+				Масив імен дівчат
+			</td>
+		</tr>
+		<tr>
+			<td>Методи</td>
+			<td>
+				Метод випадкового вибору імені хлопця<br>
+				Метод випадкового вибору імені дівчини<br>
+				Метод виведення пари для танців<br>
+				Метод run , який ініціює через кожні 5 секунд виведення нової пари для танців
+			</td>
+		</tr>
+	</table>
+	<p>Результати обчислення:</p>
+	<script>
+		class DanceTeacher {
+			constructor(girlsNames, boysNames) {
+				//---опис полів
+				this.boysNames = boysNames
+				this.girlsNames = girlsNames
+
+			}
+			//---опис методів
+			// Метод випадкового вибору імені хлопця
+			getRandomNameBoy(boysNames) {
+				const randomNameBoy = Math.floor(Math.random() * boysNames.length)
+				return this.boysNames[randomNameBoy]
+			}
+			//Метод випадкового вибору імені дівчини
+			getRandomNameGirl(boysNames) {
+				const randomNameGirl = Math.floor(Math.random() * girlsNames.length)
+				return this.girlsNames[randomNameGirl]
+			}
+			//Метод run , який ініціює через кожні 5 секунд виведення нової пари для танців
+			run() {
+				let timerId = setInterval(() => {
+					document.write(`пара ${this.getRandomNameBoy(boysNames)} та ${this.getRandomNameGirl(girlsNames)}<br>`)
+				}, 5000)
+				setTimeout(() => {
+					clearInterval(timerId)
+				}, 25000);
+			}
+
+		}
+		const boysNames = ["Liam", "Noah", "William", "James", "Oliver"];
+		const girlsNames = ["Alice", "Emily", "Olivia", "Ava", "Isabella"];
+
+		let outputPair = new DanceTeacher(girlsNames, boysNames)
+		// console.log(outputPair)
+		// let nameBoy = outputPair.getRandomNameBoy(boysNames)
+		// console.log(nameBoy)
+		// let nameGirl = outputPair.getRandomNameGirl(girlsNames)
+		// console.log(nameGirl)
+		outputPair.run()
+	</script>
+
+</body>
+</body>
+
+</html>
