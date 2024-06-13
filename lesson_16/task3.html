@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 3</title>
+</head>
+
+<body>
+	<h1>Задача 3</h1>
+	<table border="2px">
+		<tr>
+			<td><b>Задача 3. Об’єкт</b> “Фірма” (використати члени-класи)</td>
+		</tr>
+		<tr>
+			<td>Поля</td>
+			<td>
+				<ul>
+					<li>назва фірми;</li>
+					<li>дата заснування (рік, місяць);</li>
+					<li>послуги (назва послуги, вартість, термін виконання);</li>
+					<li>адреси філіалів (країна, місто, вулиця, номер будинку);</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>Методи (дії)</td>
+			<td>
+				<ul>
+					<li>визначення кількості років існування фірми;</li>
+					<li>виведення всіх філіалів фірми у вказаному місті;</li>
+					<li>виведення на екран послуг, що можуть бути виконані за вказану суму грошей та вказаний термін часу;</li>
+				</ul>
+			</td>
+		</tr>
+	</table>
+	<p>Результати обчислення:</p>
+	<script>
+		"use strict"
+		//========дата заснування
+		class FoundingDate {
+			#foundingYear
+			#foundingMonth
+			constructor(foundingMonth, foundingYear) {
+				//---опис полів
+				this.FoundingMonth = foundingMonth
+				this.FoundingYear = foundingYear
+			}
+			//------------set and get
+
+			get FoundingYear() {
+				return this.#foundingYear
+			}
+			set FoundingYear(val) {
+				if (val < 0)
+					throw new Error(`Некоректний рік`)
+				this.#foundingYear = val
+			}
+			get FoundingMonth() {
+				return this.#foundingMonth
+			}
+			set FoundingMonth(val) {
+				if (val < 0 || val > 12)
+					throw new Error(`Некоректний місяць`)
+				this.#foundingMonth = val
+			}
+			// вивід року
+			toString() {
+				return `${this.FoundingMonth} місяці ${this.FoundingYear} року`
+			}
+		}
+		//=======адреси філіалів (країна, місто, вулиця, номер будинку)
+		class Address {
+			#country
+			#town
+			#street
+			#numberHouse
+			constructor(country, town, street, numberHouse) {
+				this.Country = country
+				this.Town = town
+				this.Street = street
+				this.NumberHouse = numberHouse
+			}
+			//------------get and set
+			get Country() {
+				return this.#country
+			}
+			set Country(val) {
+				if (val == '' || val == null)
+					throw new Error(`Назва не може бути пустою`)
+				this.#country = val
+			}
+			//-----------------------
+			get Town() {
+				return this.#town
+			}
+			set Town(val) {
+				if (val == '' || val == null)
+					throw new Error(`Назва не може бути пустою`)
+				this.#town = val
+			}
+			//-----------------------
+			get Street() {
+				return this.#street
+			}
+			set Street(val) {
+				if (val == '' || val == null)
+					throw new Error(`Назва не може бути пустою`)
+				this.#street = val
+			}
+			//------------------------
+			get NumberHouse() {
+				return this.#numberHouse
+			}
+			set NumberHouse(val) {
+				if (val <= 0 || val == null)
+					throw new Error(`не вырне значення`)
+				this.#numberHouse = val
+			}
+			// вивід адреси
+			toString() {
+				return `${this.Country}, ${this.Town}, ${this.Street}, ${this.NumberHouse}<br>
+				`
+			}
+			getBranchesPlace(town) {
+
+			}
+
+		}
+		//послуги (назва послуги, вартість, термін виконання
+		class Services {
+			#nameService
+			#priceService
+			#deadline
+			constructor(nameService, priceService, deadline) {
+				this.NameService = nameService
+				this.PriceService = priceService
+				this.Deadline = deadline
+			}
+			get NameService() {
+				return this.#nameService
+			}
+			set NameService(val) {
+				if (val == '' || val == null)
+					throw new Error(`Назва не може бути пустою`)
+				this.#nameService = val
+			}
+			get PriceService() {
+				return this.#priceService
+			}
+			set PriceService(val) {
+				if (val <= 0 || val == null)
+					throw new Error(`не вырне значення`)
+				this.#priceService = val
+			}
+			// вивід послуг
+			toString() {
+				return `${this.NameService}, ${this.PriceService}, ${this.Deadline} годину<br>`
+			}
+
+		}
+		class Сompany {
+			#titleСompany
+			constructor(titleСompany, foundingDate, address, services) {
+				this.TitleСompany = titleСompany
+				this.foundingDate = foundingDate
+				this.address = address
+				this.services = services
+
+			}
+			// -------get and set
+			get TitleСompany() {
+				return this.#titleСompany
+			}
+			set TitleСompany(val) {
+				if (val == '' || val == null)
+					throw new Error(`Назва не може бути пустою`)
+				this.#titleСompany = val
+			}
+
+
+			//---методи
+			//визначення кількості років існування фірми
+			getСountCompanyYearsOld(currentMonth, currentYear) {
+				return Math.floor(((currentYear - this.foundingDate.FoundingYear) * 12 + (currentMonth - this.foundingDate.FoundingMonth)) / 12)
+			}
+			//виведення всіх філіалів фірми у вказаному місті
+			getCompanyCity(userTwon) {
+				return this.address.filter(el => (el.Town === userTwon))
+			}
+			//виведення на екран послуг, що можуть бути виконані за вказану суму грошей та вказаний термін часу
+			getSelectedServices(useService, useDeadline) {
+				return this.services.filter(el => (el.PriceService <= useService && el.Deadline === useDeadline))
+			}
+			// вивід Фірма
+			toString() {
+				return `${this.TitleСompany}<br>
+				дата заснування: ${this.foundingDate}<br>
+				фірмі ${this.getСountCompanyYearsOld(3, 2024)} роки
+				<br><br>послуги:<br>${this.services}<br>
+				Адреса:<br> ${this.address}`
+			}
+		}
+		//змінні
+		const foundingDate = new FoundingDate(5, 2000)
+		let services = [
+			new Services('Манікюр', 300, 1),
+			new Services('Педикюр', 400, 1),
+			new Services('Стрижка', 600, 2),
+			new Services('Фарбування волосся', 1000, 2),
+			new Services('Масаж', 800, 1)
+		]
+		let address = [
+			new Address('Україна', 'Київ', 'вул. Хрещатик', 10),
+			new Address('Україна', 'Львів', 'просп. Свободи', 25),
+			new Address('Україна', 'Одеса', 'просп. Свободи', 5),
+			new Address('Україна', 'Львів', 'просп. Незалежності', 50),
+			new Address('Україна', 'Запоріжжя:', 'просп. Соборний', 30)
+		]
+		//=======створення фірми
+		let newCompaty = new Сompany('"Міраж"', foundingDate, address, services)
+		//вивід
+		document.write(newCompaty)
+		console.log(newCompaty)
+		document.write(`<br>Філії у місті Львіві:<br> ${newCompaty.getCompanyCity('Львів')}<br>`)
+		document.write(`<br>послугі, що можуть бути виконані на 600 грн. та 1 годину:<br>${newCompaty.getSelectedServices(600, 1)}<br>`)
+	</script>
+
+</body>
+</body>
+
+</html>

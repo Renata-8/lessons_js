@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 4</title>
+</head>
+
+<body>
+	<h1>Задача 4</h1>
+	<p>
+	<p>
+		Створити клас<b> TBankomat</b>, який моделює роботу банкомата. Клас повинен містити поля для зберігання кількості купюр кожного із номіналів від 5 до 200 гривень. Реалізувати методи знаходження максимальної та мінімальної сум, які може видати банкомат, та метод зняття деякої суми.
+	</p>
+
+	<p>Результати обчислення:</p>
+	<script>
+		"use strict"
+		//===номінали та кількість купюр
+		class Denominations {
+			#banknoteDenomination
+			get BanknoteDenomination() {
+				return this.#banknoteDenomination
+			}
+			set BanknoteDenomination(val) {
+				if (val < 0) throw new Error('величина не може бути від"ємною')
+				this.#banknoteDenomination = val
+			}
+			constructor(banknoteDenomination, banknoteValue) {
+				this.BanknoteDenomination = banknoteDenomination
+				this.banknoteValue = banknoteValue
+			}
+			//--------get and set для приватного поля
+
+			//==================медоти
+			getTotalValue() {
+				return this.BanknoteDenomination * this.banknoteValue
+			}
+			toString() {
+				return `Номінал банкноти: ${this.BanknoteDenomination}, кількість: ${this.banknoteValue}, сума: ${this.getTotalValue()}<br>`
+			}
+		}
+		//===TBankomat
+		class TBankomat {
+			constructor(denominationsList) {
+				this.denominationsList = denominationsList
+			}
+			//==============медоти
+			//-------знаходження максимальної суми яку може видати банкомат
+			getMaxSum() {
+				let maxSum = this.denominationsList.reduce((prevMax, el) => prevMax + el.getTotalValue(),
+					0)
+				return maxSum
+			}
+			//-------знаходження мінімальної суми яку може видати банкомат
+			getMinSum() {
+
+				let min = this.denominationsList.reduce((prevMin, el) => (el.banknoteValue > 0 && el.BanknoteDenomination < prevMin) ? el.BanknoteDenomination : prevMin,
+					Infinity)
+				return min
+			}
+			//------------зняття деякої суми
+			getWithdraw(userVal) {
+				if (userVal > this.getMaxSum()) {
+					document.write('У банкоматі немає такої суми')
+					return
+				}
+			}
+			//----------друк
+			toString() {
+				return `Максимальна доступна сума: ${this.getMaxSum()} грн.<br>
+				Мінімальної суми яку може видати банкомат: ${this.getMinSum()} грн.<br>`
+			}
+
+		}
+		let denominationsList = [
+			new Denominations(5, 6),
+			new Denominations(10, 3),
+			new Denominations(20, 4),
+			new Denominations(50, 2),
+			new Denominations(100, 6),
+			new Denominations(200, 0)
+		]
+		document.write(denominationsList)
+		document.write(`--------------------------------------------<br>`)
+		console.log(denominationsList)
+		let Bankomat = new TBankomat(denominationsList)
+		document.write(Bankomat)
+		Bankomat.getWithdraw(800)
+	</script>
+
+</body>
+</body>
+
+</html>

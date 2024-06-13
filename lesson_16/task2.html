@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 2</title>
+</head>
+
+<body>
+	<h1>Задача 2</h1>
+	<p>
+		Створити клас <b>TMoney</b> для роботи з грошовими сумами. Сума повинна зберігатися у вигляді доларового еквіваленту. Реалізувати методи додавання/вилучення грошової маси, вказуючи необхідну суму у гривнях, та визначення курсу долара, при якому сума у гривнях збільшиться на 100. Курс долара зберігати в окремому полі.
+	</p>
+	<p>Результати обчислення:</p>
+	<script>
+		"use strict"
+		class TMoney {
+			#maneyInDollar
+			#dollarExchangeRate
+			constructor(maneyInDollar, dollarExchangeRate) {
+				//---опис полів
+				this.ManeyInDollar = maneyInDollar
+				this.DollarExchangeRate = dollarExchangeRate
+			}
+			//===================================
+			// властивісті з геттерами і сеттерами
+			get ManeyInDollar() {
+				return this.#maneyInDollar
+			}
+
+			set ManeyInDollar(val) {
+				if (val < 0)
+					throw new Error(`Невірне значення`)
+				this.#maneyInDollar = val
+			}
+			get DollarExchangeRate() {
+				return this.#dollarExchangeRate
+			}
+
+			set DollarExchangeRate(val) {
+				if (val <= 0)
+					throw new Error(`Курс не може бути відємним`)
+				this.#dollarExchangeRate = val
+			}
+			//==========конвертація грн у долар
+			getChangeUSDInUAH(value) {
+				return value / this.DollarExchangeRate
+			}
+			//додавання/вилучення грошової маси
+			getBalanceChange(val) {
+				this.ManeyInDollar += this.getChangeUSDInUAH(val)
+			}
+			//курсу долара, при якому сума у гривнях збільшиться на 100
+			getRateBringsExtra100Uah() {
+				return (this.ManeyInDollar * this.DollarExchangeRate + 100) / this.ManeyInDollar
+			}
+			//виведення
+			toString() {
+				return `Баланс: ${this.ManeyInDollar.toFixed(2)} дол.<br>`
+			}
+		}
+		let userMoney = new TMoney(1000, 39)
+		document.write(`Курс долора: ${userMoney.DollarExchangeRate}<br>`)
+		document.write(userMoney)
+		document.write('додаємо 30000 <br>')
+		userMoney.getBalanceChange(30000)
+		document.write(userMoney)
+		document.write('віднімаємо 3000 <br>')
+		userMoney.getBalanceChange(-3000)
+		document.write(userMoney)
+		document.write(`курсу долара, при якому сума у гривнях збільшиться на 100: ${userMoney.getRateBringsExtra100Uah().toFixed(2)} грн`)
+
+	</script>
+
+</body>
+
+</html>
