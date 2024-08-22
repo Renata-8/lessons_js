@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 2</title>
+</head>
+
+<body>
+	<h1>Задача 2</h1>
+	<p>
+		Створити службове авто (водій, марка, номер). Створити клас таким чином, щоб можна було створити тільки один екземпляр цього класу.
+	<p>Результати обчислення:</p>
+	<script>
+		class ServiceCar {
+			static serviceCarRef
+			constructor(iniData) {
+				if (ServiceCar.serviceCarRef)
+					return ServiceCar.serviceCarRef
+
+				Object.assign(this, iniData)
+
+				// this.driver = driver
+				// this.brand = brand
+				// this.number = number
+
+				ServiceCar.serviceCarRef = this
+			}
+
+			getInfo() {
+				return `Водій:${this.driver}, Марка авто: ${this.brand}, Реєстраційний номер авто: ${this.number}<br>`
+			}
+		}
+
+		const myServiceCar = new ServiceCar({ driver: 'John', brand: 'Toyota', number: 'AB1234CD' })
+		const myServiceCar1 = new ServiceCar({ driver: 'Alice', brand: 'Toyota', number: 'CD5678' })
+		document.write(myServiceCar.getInfo())
+		document.write(myServiceCar1.getInfo())
+
+	</script>
+
+</body>
+
+</html>

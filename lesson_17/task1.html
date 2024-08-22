@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 1</title>
+</head>
+
+<body>
+	<h1>Задача 1</h1>
+	<p>
+		Створити клас, що дозволяє виконувати такі операції над масивами: знаходження кількості додатних, кількості від’ємних, кількість входжень деякого числа (статичні методи)
+	</p>
+	<p>Результати обчислення:</p>
+	<script>
+		//---------
+		class operationArr {
+			static array = [2, 6, 5, 1, -3, 4, 3, -5, 2, 6]
+			//---------знаходження кількості додатних
+			static countPositiveSum(array) {
+				return operationArr.array.reduce((prevSum, el) => el > 0 ? prevSum + 1 : prevSum, 0)
+			}
+			//--------кількості від’ємних
+			static countNegativeSum(array) {
+				return operationArr.array.reduce((prevSum, el) => el < 0 ? prevSum + 1 : prevSum, 0)
+			}
+			static countIncludedNumber(array) {
+				return operationArr.array.reduce((prevSum, el) => el === number ? prevSum + 1 : prevSum, 0)
+			}
+		}
+
+		let number = 6
+		document.write(`Масив : ${operationArr.array}<br>`)
+		document.write(`Кількість додатніх : ${operationArr.countPositiveSum()}<br>`)
+		document.write(`Кількість від’ємних : ${operationArr.countNegativeSum()}<br>`)
+		document.write(`Кількість входжень  числа ${number}: ${operationArr.countIncludedNumber()}`)
+	</script>
+
+</body>
+
+</html>

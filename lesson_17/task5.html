@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 5</title>
+</head>
+
+<body>
+	<h1>Задача 5</h1>
+	<p>
+	<p>
+		Особиста бібліотека. Картотека домашньої бібліотеки: дані книги (автори (піб, рік народження, короткий опис), назва книги, жанр, видавництво (назва, реєстраційний номер, рік засування)). Реалізувати розділи бібліотеки (спеціальна література, хобі, домашнє господарство і т.д.), походження книги і наявність на даний час. Організувати додавання/вилучення книг та вибір книг за назвою, за ПІБ автора, за видавництвом.
+	</p>
+	</p>
+	<p>Результати обчислення:</p>
+	<script>
+		"use strict"
+		// Особиста бібліотека
+		// Картотека домашньої бібліотеки, дані книги:
+		// - автори (піб, рік народження, короткий опис)
+		// - назва книги,
+		// - жанр,
+		// - видавництво (назва, реєстраційний номер, рік засування)
+		// =============================
+		// Реалізувати:
+		// розділи бібліотеки (спеціальна література, хобі, домашнє господарство і т.д.)
+		// походження книги
+		// наявність на даний час.
+		// ==============================
+		// Організувати:
+		// додавання/вилучення книг
+		// вибір книг за назвою
+		// вибір книг за ПІБ автора
+		// вибір книг за видавництвом.
+		//==========================================================================
+		// ---------- автори (піб, рік народження, короткий опис)
+		class Author {
+			#authorName
+			get AuthorName() {
+				return this.#authorName
+			}
+			set AuthorName(val) {
+				if (val.length === 0)
+					throw new Error('не може бути порожнім')
+				this.#authorName = val
+			}
+			constructor(authorName, authorBirthYear, description) {
+				this.AuthorName = authorName
+				this.authorBirthYear = authorBirthYear
+				this.description = description
+			}
+			toString() {
+				return `Ім'я автора: ${this.AuthorName}<br> Рік народження: ${this.authorBirthYear}<br> Коротнкий опис: ${this.description}`
+			}
+		}
+
+		// --------------- видавництво (назва, реєстраційний номер, рік засування)
+		class Publisher {
+			#publisherName
+			get PublisherName() {
+				return this.#publisherName
+			}
+			set PublisherName(val) {
+				if (val.length === 0)
+					throw new Error('не може бути порожнім')
+				this.#publisherName = val
+			}
+			#publisherRegistationNumber
+			get PublisherRegistationNumber() {
+				return this.#publisherRegistationNumber
+			}
+			set PublisherRegistationNumber(val) {
+				if (val.length === 0 || val.length <= 0)
+					throw new Error('не може бути порожнім або відємним')
+				this.#publisherRegistationNumber = val
+			}
+			constructor(publisherName, publisherRegistationNumber, publisherfoundationYear) {
+				this.PublisherName = publisherName
+				this.PublisherRegistationNumber = publisherRegistationNumber
+				this.publisherfoundationYear = publisherfoundationYear
+			}
+			toString() {
+				return `Назва видавнитства: ${this.PublisherName}<br> Реєстраційний номер видавнитства: ${this.PublisherRegistationNumber}<br> Рік заснування: ${this.publisherfoundationYear}`
+			}
+		}
+		//---------книга:
+		// - автори (піб, рік народження, короткий опис)
+		// - назва книги,
+		// - жанр,
+		// - видавництво (назва, реєстраційний номер, рік засування)
+		// походження книги
+		// наявність на даний час.
+		class Book {
+			#bookTitle
+			get PublisherName() {
+				return this.#bookTitle
+			}
+			set PublisherName(val) {
+				if (val.length === 0)
+					throw new Error('не може бути порожнім')
+				this.#bookTitle = val
+			}
+			constructor(author, bookTitle, bookGenre, publisher, bookOrigin, bookAvailable) {
+				this.bookAuther = author
+				this.BookTitle = bookTitle
+				this.bookGenre = bookGenre
+				this.bookPublisher = publisher
+				this.bookOrigin = bookOrigin
+				this.bookAvailable = bookAvailable
+			}
+			toString() {
+				return `${this.bookAuther}<br>Назва книги: ${this.BookTitle}<br>Жанр: ${this.bookGenre}<br> ${this.bookPublisher}<br><br>`
+			}
+		}
+		//----------бібліотека
+		class Library {
+			constructor() {
+				this.books = []
+				this.sections = {}//розділи бібліотеки (спеціальна література, хобі, домашнє господарство і т.д.)
+			}
+			// ----методи
+			// додавання книг
+			addBook(book) {
+				this.books.push(book)
+				if (!this.sections[book.bookGenre]) {
+					this.sections[book.bookGenre] = []
+				}
+				this.sections[book.bookGenre].push(book)
+			}
+
+			//----вилучення книг
+			removeBook(title) {
+				const bookIndex = this.books.findIndex(el => el.BookTitle === title)
+				if (bookIndex !== -1) {
+					const removeBook = this.books.splice(bookIndex, 1)
+
+					const sectionBooks = this.sections[removeBook.bookGenre]
+					if (sectionBooks) {
+						const sectionIndex = sectionBooks.findIndex(el => el.title === title)
+						if (sectionIndex !== -1) {
+							sectionBooks.splice(sectionIndex, 1)
+						}
+					}
+					return document.write(`книга за назвою "${title}" видалена з бібліотеки  <br> ${removeBook}у бібліотеці залишилось ${this.books.length} книги<br>`)
+				}
+				return document.write('такої книги нема')
+			}
+
+			// вибір книг за назвою
+			findBooksByTitle(title) {
+				const findBook = this.books.filter(el => el.BookTitle.toLowerCase() === title.toLowerCase())
+				return document.write(`<br>вибрана книга за назвою ${title}:<br> ${findBook}`)
+			}
+			// вибір книг за ПІБ автора
+			findBooksByAuthor(author) {
+				const findBook = this.books.filter(el => el.bookAuther.AuthorName.toLowerCase() === author.toLowerCase())
+				return document.write(`<br>вибрана книга за за ПІБ автора: ${author}:<br> ${findBook}`)
+			}
+			// вибір книг за видавництвом.
+			findBooksByPublisher(publisher) {
+				const findBook = this.books.filter(el => el.bookPublisher.PublisherName.toLowerCase() === publisher.toLowerCase())
+				return document.write(`<br>вибрана книга за видавництвом ${publisher}:<br> ${findBook}`)
+			}
+
+			toString() {
+				return this.books
+			}
+		}
+
+		const library = new Library()
+		const author1 = new Author('Тарас Шевченко', 1814, 'Український поет, художник...')
+		const author2 = new Author('Джордж Мартін', 1948, ' Американський письменник-фантаст, сценарист і продюсер...')
+		const publisher1 = new Publisher('Видавництво А', 12345, 2000)
+		const publisher2 = new Publisher('Видавництво Б', 52346, 2002)
+		const book1 = new Book(
+			author1,
+			'Кобзар',
+			'Поезія',
+			publisher1,
+			'Подарунок',
+			true
+		)
+		library.addBook(book1)
+		library.addBook(new Book(
+			author2,
+			'Битва королів. Пісня льоду й полум’я. Книга друга ',
+			'Фентезі',
+			publisher2,
+			'Подарунок',
+			true))
+		library.addBook(new Book(
+			author2,
+			'Буря мечів. Пісня льоду й полум’я',
+			'Фентезі ',
+			publisher1,
+			'Куплено в магазині',
+			true,
+			true));
+		//document.write(book1.toString())
+		//console.log(book1)
+		//document.write(publisher1.toString())
+		//document.write(author1.toString())
+
+		document.write(library.toString())
+		// console.log(publisher1)
+		// console.log(publisher2)
+		// console.log(library)
+		library.findBooksByTitle('КоБзар')
+		library.findBooksByPublisher('Видавництво Б')
+		library.findBooksByAuthor('Джордж Мартін')
+		library.removeBook('Буря мечів. Пісня льоду й полум’я')
+
+
+	</script>
+
+</body>
+
+</html>

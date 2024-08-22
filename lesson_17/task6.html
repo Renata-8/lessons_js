@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<title>Задача 6</title>
+</head>
+
+<body>
+	<h1>Задача 6</h1>
+	<p>
+		Дано масив імен. Застосовуючи відповідне сортування та бінарний пошук визначити, чи є у масиві ім’я довжиною 5 символів і під яким індексом.
+	</p>
+	<p>Результати обчислення:</p>
+	<script>
+		let peopleNames = ["Alexander", "Emily", "Max", "Anna", "Michael", "Olga", "Sophia", "John", "Victoria", "James"]
+		peopleNames.sort((el1, el2) => el1.length - el2.length)
+		function getFindLengthName(peopleNames, lengthName) {
+			let start = 0
+			let end = peopleNames.length - 1
+			while (start < end) {
+				const middle = Math.floor((start + end) / 2)
+				if (peopleNames[middle].length === lengthName) return document.write(`так є це  ${peopleNames[middle]} під індексом ${middle}`)
+				if (peopleNames[middle].length < lengthName) start = middle + 1
+				if (peopleNames[middle].length > lengthName) end = middle - 1
+			}
+			return document.write(`Імені з довжиною ${lengthName} символів нема`)
+		}
+		document.write(`Дано масив: [${peopleNames}] <br> `)
+		getFindLengthName(peopleNames, 5)
+	</script>
+
+</body>
+</body>
+
+</html>

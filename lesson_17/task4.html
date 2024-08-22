@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 3</title>
+</head>
+
+<body>
+	<h1>Задача 3</h1>
+	<p>
+		Склад. База товарів, які зберігаються на складі: назва товару, одиниця виміру, кількість, фірма виробник (назва, реєстраційний номер). Організувати реєстрацію/відвантаження товарів, фільтрація за назвою товару, фільтрація за назвою фірми
+	</p>
+	<p>Результати обчислення:</p>
+	<script>
+		"use strict"
+		//-------Склад.База товарів, які зберігаються на складі:
+		//Склад.
+		//База товарів, які зберігаються на складі:
+		//назва товару
+		//одиниця виміру
+		//кількість
+		//фірма виробник (назва, реєстраційний номер)
+		//==============================
+		//Організувати:
+		//реєстрацію/відвантаження товарів
+		//фільтрація за назвою товару
+		//фільтрація за назвою фірми
+		//=============================
+		//----------Опис полів
+		class Product {
+			//---------------назва товару
+			#productName
+			get ProductName() {
+				return this.#productName
+			}
+			set ProductName(val) {
+				if (val.length === 0)
+					throw new Error('назва не може бути порожньою')
+				this.#productName = val
+			}
+			//----------------одиниця виміру
+			#productValue
+			get ProductValue() {
+				return this.#productValue
+			}
+			set ProductValue(val) {
+				if (val.length === 0)
+					throw new Error('поле не може бути порожнім')
+				this.#productValue = val
+			}
+			//-------------кількість
+			#productQuantity
+			get ProductQuantity() {
+				return this.#productQuantity
+			}
+			set ProductQuantity(val) {
+				if (val < 0)
+					throw new Error('кількість не може бути від"ємною')
+				this.#productQuantity = val
+			}
+			constructor(productName, productValue, productQuantity, companyName) {
+				this.ProductName = productName
+				this.ProductValue = productValue
+				this.ProductQuantity = productQuantity
+				this.companyName = companyName
+			}
+
+			//-----друк
+			toString() {
+				return `назва товару: ${this.ProductName}, кількість: ${this.ProductQuantity},одиниця виміру: ${this.ProductValue}, Виробник:${this.companyName}`
+
+			}
+		}
+		//------------------фірма виробник (назва, реєстраційний номер)
+		class Company {
+			//---------назва
+			#companyTitle
+			get CompanyTitle() {
+				return this.#companyTitle
+			}
+			set CompanyTitle(val) {
+				if (val === 0)
+					throw new Error('поле не може бути порожнім')
+				this.#companyTitle = val
+			}
+			//-----------реєстраційний номер (тільки для читання)
+			#companyId
+			get CompanyId() {
+				return this.#companyId
+			}
+			constructor(companyTitle) {
+				this.CompanyTitle = companyTitle
+				this.#companyId = Math.floor(Math.random() * 10000)//генерується рандомно
+			}
+			//---------Методи
+			//-----друк
+			toString() {
+				return `Виробник: ${this.CompanyTitle}, реєстраційний номер: ${this.CompanyId}<br>`
+			}
+		}
+		//----------Склад
+		class Warehouse {
+			constructor(productsData) {
+				//---формування масиву
+				this.productsData = productsData
+			}
+			//---------Методи
+			//-------------реєстрація товарів(додавання)
+			addProduct(newProductName, newProductValue, newProductQuantity, newCompanyName) {
+				const productIndex = productsList.findIndex(el => el.ProductName === newProductName)
+				if (productIndex !== -1) {
+					const product = productsList[productIndex]
+					product.ProductQuantity += newProductQuantity
+				} else {
+					const newProduct = new Product(newProductName, newProductValue, newProductQuantity, new Company(newCompanyName))
+					productsList.push(newProduct)
+				}
+			}
+			//------------відвантаження товарів
+			reduceProduct(newProductName, newProductQuantity) {
+				const productIndex = productsList.findIndex(el => el.ProductName === newProductName)
+				if (productIndex !== -1) {
+					const product = productsList[productIndex]
+					if (product.ProductQuantity >= newProductQuantity) {
+						product.ProductQuantity -= newProductQuantity
+					} else {
+						throw new Error(`немає такої кількості товарів ${product.ProductName}`)
+
+					}
+				} else {
+					throw new Error(`немає такого товару ${newProductName}`)
+				}
+				return console.log(productIndex)
+			}
+			//---------фільтрація за назвою товару
+			filterProductName(val) {
+				return productsList.filter(el => el.ProductName === val)
+			}
+			//фільтрація за назвою фірми
+			filterCompanyName(val) {
+				return this.productsData.filter(el => el.companyName.CompanyTitle === val)
+			}
+			toString() {
+				return this.productsData
+			}
+		}
+		//--змінні
+
+		let productsList = [
+			new Product('aa', 'sht', 20, new Company('aaaaaaaaaa')),
+			new Product('bb', 'sht', 50, new Company('bbbbbbbbbbb')),
+			new Product('cc', 'kg', 15, new Company('aaaaaaaaaa'))
+		]
+
+
+		//по факту я пользуюсь классом Склад вес остальніе вспомагательные
+
+		let warehouse = new Warehouse(productsList)
+		document.write('Початкові позіції товарів на складі:<br>')
+		document.write(warehouse.toString())
+
+		document.write('<br>Додавання товару:<br>')
+		warehouse.addProduct('dd', 'sht', 20, 'bbbbbbbbbbb')
+		document.write(warehouse.toString())
+
+		document.write('<br> Відвантажено товар (dd):<br>')
+		warehouse.reduceProduct('dd', 15)
+		document.write(warehouse.toString())
+
+		document.write('<br> фільтрація за назвою товару:<br>')
+		document.write(warehouse.filterProductName('aa'))
+
+		document.write('<br>фільтрація за назвою фірми:<br>')
+		document.write(warehouse.filterCompanyName('aaaaaaaaaa'))
+	</script>
+</body>
+
+</html>
