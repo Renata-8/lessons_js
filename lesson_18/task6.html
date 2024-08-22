@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 6</title>
+	<script>
+		function createTable() {
+			const numberScores = parseInt(document.getElementById('priceNumber').value)
+			if (numberScores <= 0) throw new Error('Некоректне значення')
+			const newTableEl = document.createElement('table')
+			const newTr = document.createElement('tr')
+			for (let index = 0; index < numberScores; index++) {
+				const newTd = document.createElement('td')
+				const newInput = document.createElement('input')
+				//-створює class inputScore
+				newInput.className = 'inputScore'
+				newInput.classList.add('test') //?чому його не ствоює
+				newInput.setAttribute('type', 'number')
+				newTd.innerText = index + 1
+				newTr.append(newTd)
+				newTd.append(newInput)
+			}
+			newTableEl.append(newTr)
+			//-------------кнопка get sum
+			const newButton = document.createElement('button')
+			const p = document.createElement('p')
+			const divEl = document.createElement('div')
+			newButton.setAttribute('id', 'score')
+			newButton.innerText = 'get sum'
+			p.setAttribute('class', 'avarage')
+			//p.innerText = 'Average:'
+			document.querySelector('.table').innerHTML = ''
+			document.querySelector('.table').append(newTableEl)
+			document.querySelector('.table').append(newButton)
+			document.querySelector('.table').append(p)
+			document.querySelector('.table').append(divEl)
+			document.getElementById('score').onclick = () => getAverage()
+			return newTableEl
+		}
+
+		function getAverage() {
+			const tegInput = document.getElementsByClassName('inputScore')
+			const tegSpan = document.getElementsByClassName('avarage')
+			//console.log(tegInput)
+			let sum = 0
+			for (let index = 0; index < tegInput.length; index++) {
+				let score = parseInt(tegInput[index].value)
+				if (!isNaN(score)) {
+					sum += score
+				}
+				console.log(score)
+			}
+			console.log(sum)
+			const average = sum / tegInput.length
+			console.log(`average${average}`)
+			document.querySelector('.avarage').innerText = `Average: ${average}`
+		}
+
+		window.onload = function () {
+			document.querySelector('#getTable').onclick = createTable
+
+		}
+
+	</script>
+</head>
+
+<body>
+	<h1>Задача 6</h1>
+	<p>
+		Користувач задає кількість оцінок і натискає на кнопку «get table». В результаті формується таблиця з input, куди користувач вводить оцінки. Після цього натискає на кнопку “get sum” і знаходить середнє значення.
+	</p>
+	<p>Результати обчислення:</p>
+	<form action="">
+		<label>Price number:</label>
+		<input id="priceNumber" type="number" value="2">
+	</form>
+
+	<button id="getTable">get table</button>
+	<hr>
+	<div class="table"></div>
+</body>
+
+</html>

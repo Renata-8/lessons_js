@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 5</title>
+	<script>
+		function createTable(min = 2, max = 20) {
+			//-створили об'єкт table
+			const newTableEl = document.createElement('table')
+			newTableEl.style.border = '2px solid #000'
+			document.body.append(newTableEl)
+			//-динамісно створюємо рядки і додаємо у об'єкт table як дочірні об'єкти
+			for (let index = 0; index < 3; index++) {
+				const newTr = document.createElement('tr')
+				for (let index = 0; index < 4; index++) {
+					//-створили td
+					const newTd = document.createElement('td')
+					//- задали внутрішній контент
+					randomNumber = Math.floor(Math.random() * (max - min + 1)) + min
+					newTd.innerText = randomNumber
+					newTd.style.border = '2px solid #000'
+					//-вставили td у tr
+					newTr.append(newTd)
+				}
+				newTableEl.append(newTr)
+			}
+			return newTableEl
+		}
+
+		window.onload = function () {
+			createTable()
+		}
+	</script>
+</head>
+
+<body>
+	<h1>Задача 5</h1>
+	<p>
+		Відобразити таблицю 3*4 з випадковими числами (її треба динамічно створити і вставити на сторінку)
+	</p>
+	<p>Результати обчислення:</p>
+</body>
+
+</html>

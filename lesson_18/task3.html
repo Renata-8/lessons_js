@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 3</title>
+	<script>
+		function yearsOld() {
+			const date = new Date()
+			let thisYear = date.getFullYear()
+			const yearBirth = parseInt(document.getElementById('yearBirth').value)
+			const yearsOld = thisYear - yearBirth
+			document.getElementById('yearsOld').value = yearsOld
+
+
+		}
+
+		window.onload = function () {
+			document.querySelector('button').onclick = yearsOld
+
+		}
+	</script>
+</head>
+
+<body>
+	<h1>Задача 3</h1>
+	<p>
+		Користувач задає рік народження. Визначити кількість років користувача.
+	</p>
+	<p>Результати обчислення:</p>
+	<div>
+		<label>
+			Рік народження:
+			<input id="yearBirth" type="number" value="1980">
+		</label>
+	</div>
+	<button id="exchange">обчислити</button>
+	<hr>
+	<label>
+		Кількість років
+		<input id="yearsOld" type="number" value="0">
+	</label>
+</body>
+
+</html>

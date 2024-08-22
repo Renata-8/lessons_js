@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 1</title>
+	<script>
+		function getResult(action) {
+			const num1 = parseFloat(document.getElementById('first').value)
+			const num2 = parseFloat(document.getElementById('second').value)
+			let result
+			switch (action) {
+				case 'sum': result = num1 + num2
+					break
+				case 'subtraction': result = num1 - num2
+					break
+				case 'multiplication': result = num1 * num2
+					break
+				case 'division': result = num1 / num2
+					break
+			}
+			document.getElementById('result').value = result
+		}
+
+		window.onload = function () {
+			document.getElementById('sum').onclick = () => {
+				getResult('sum')
+			}
+			document.getElementById('subtraction').onclick = () => {
+				getResult('subtraction')
+			}
+			document.getElementById('multiplication').onclick = () => {
+				getResult('multiplication')
+			}
+			document.getElementById('division').onclick = () => {
+				getResult('division')
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<h1>Задача 1</h1>
+	<p>
+		Розробити калькулятор
+	</p>
+	<p>Результати обчислення:</p>
+	<div>
+		<label>
+			First number:
+			<input id="first" type="number" value="0">
+		</label>
+	</div>
+	<label>
+		Second number:
+		<input id="second" type="number" value="0">
+	</label>
+	<div>
+		<button id="sum">Додати</button>
+		<button id="subtraction">Відняти</button>
+		<button id="multiplication">Помножити</button>
+		<button id="division">Поділити</button>
+	</div>
+	<label>
+		Результат
+		<input id="result" type="number" value="0">
+	</label>
+</body>
+
+</html>

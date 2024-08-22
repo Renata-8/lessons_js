@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Задача 6</title>
+	<script>
+		// function getTotalPrice() {
+		// 	document.getElementById('result').innerHTML = getFoodCost() + getTransportlCost() + getGuideCost()
+		// }
+
+		//-----------------------------------вид транспорту
+		function getTransportlCost() {
+			const transportPrices = {
+				'1': 100, // авто
+				'2': 50,  // автобус
+				'3': 200  // літак
+			}
+			let transportlCost = 0
+			for (let i = 1; i <= 3; i++) {
+				let transportSelect = document.querySelector(`select[name = trip_${i}_list]`)
+				//console.log(transportPrices[transportSelect.value])
+				transportlCost += transportPrices[transportSelect.value]
+			}
+			return transportlCost
+		}
+		//---------------------Вартість харчування
+		function getFoodCost() {
+			const foodPrices = {
+				'eat1_breakfast': 10,
+				'eat1_lunch': 20,
+				'eat1_dinner': 30,
+				'eat2_breakfast': 10,
+				'eat2_lunch': 20,
+				'eat2_dinner': 30,
+				'eat3_breakfast': 10,
+				'eat3_lunch': 20,
+				'eat3_dinner': 30
+			}
+			// const inputList = document.querySelectorAll('input[name=eat]:checked')
+			// console.log(inputList)
+			// let sum = 0
+			// inputList.forEach(checkbox => {
+			// 	sum += foodPrices[checkbox.id]
+			// })
+			//----------------------------------------
+			const inputList = document.querySelectorAll('input[name=eat]')
+			//console.log(inputList)
+			let foodSum = 0
+			for (const el of inputList) {
+				if (el.checked) foodSum += foodPrices[el.id]
+			}
+			return foodSum
+		}
+		//-----------------------------------послуга гіда
+		function getGuideCost() {
+			const guidePrices = {
+				'guide1_1': 50,
+				'guide1_2': 60,
+				'guide1_3': 70,
+				'guide2_1': 50,
+				'guide2_2': 60,
+				'guide2_3': 70,
+				'guide3_1': 50,
+				'guide3_2': 60,
+				'guide3_3': 70
+			}
+
+			let guideCost = 0
+			const guideList = document.querySelectorAll('input[name = guide]')
+			//console.log(guidePrices[guideList.value])
+			for (const el of guideList) {
+				if (el.checked) guideCost += guidePrices[el.id]
+			}
+			return guideCost
+		}
+		window.onload = function () {
+			document.querySelector('button').onclick = TotalPrice =>
+				document.getElementById('result').innerHTML = getFoodCost() + getTransportlCost() + getGuideCost()
+
+		}
+
+	</script>
+</head>
+
+<body>
+	<h1>Задача 6</h1>
+	<p>
+		Подорож складається з 3 етапів. На кожному етапі користувач може вибрати один з видів транспорту (авто, автобус, літак - випадаючий список), харчування (сніданок, обід, вечеря – checkbоx) та одного з 3-х гідів(використати - radio buttons). Ціни визначте самі. Підрахувати загальну вартість.
+	</p>
+	<p>Результати обчислення:</p>
+	<div class="trip">
+		<form action="">
+			<section class="trip-1">
+				<h2>1 Етап</h2>
+				<form action="#">
+					<select name="trip_1_list">
+						<option value="1">авто</option>
+						<option value="2">автобус</option>
+						<option value="3">літак</option>
+					</select>
+					<div>
+						<input type="checkbox" name="eat" id="eat1_breakfast">
+						<label for="eat1_breakfast">сніданок</label>
+						<input type="checkbox" name="eat" id="eat1_lunch">
+						<label for="eat1_lunch">обід</label>
+						<input type="checkbox" name="eat" id="eat1_dinner">
+						<label for="eat1_dinner">вечеря</label>
+					</div>
+					<div>
+						<input type="radio" name="guide" id="guide1_1">
+						<label for="guide1">Микола</label>
+						<input type="radio" name="guide" id="guide1_2">
+						<label for="guide1">Іван</label>
+						<input type="radio" name="guide" id="guide1_3">
+						<label for="guide1">Петро</label>
+					</div>
+				</form>
+			</section>
+			<section class="trip-1">
+				<h2>2 Етап</h2>
+				<form action="#">
+					<select name="trip_2_list">
+						<option value="1">авто</option>
+						<option value="2">автобус</option>
+						<option value="3">літак</option>
+					</select>
+					<div>
+						<input type="checkbox" name="eat" id="eat2_breakfast">
+						<label for="eat2_breakfast">сніданок</label>
+						<input type="checkbox" name="eat" id="eat2_lunch">
+						<label for="eat2_lunch">обід</label>
+						<input type="checkbox" name="eat" id="eat2_dinner">
+						<label for="eat2_dinner">вечеря</label>
+					</div>
+					<div>
+						<input type="radio" name="guide" id="guide2_1">
+						<label for="guide2">Олег</label>
+						<input type="radio" name="guide" id="guide2_2">
+						<label for="guide2">Дмитро</label>
+						<input type="radio" name="guide" id="guide2_3">
+						<label for="guide2">Олександр</label>
+					</div>
+				</form>
+			</section>
+			<section class="trip-1">
+				<h2>3 Етап</h2>
+				<form action="#">
+					<select name="trip_3_list">
+						<option value="1">авто</option>
+						<option value="2">автобус</option>
+						<option value="3">літак</option>
+					</select>
+					<div>
+						<input type="checkbox" name="eat" id="eat3_breakfast">
+						<label for="eat3_breakfast">сніданок</label>
+						<input type="checkbox" name="eat" id="eat3_lunch">
+						<label for="eat3_lunch">обід</label>
+						<input type="checkbox" name="eat" id="eat3_dinner">
+						<label for="eat3_dinner">вечеря</label>
+					</div>
+					<div>
+						<input type="radio" name="guide" id="guide3_1">
+						<label for="guide3">Василь</label>
+						<input type="radio" name="guide" id="guide3_2">
+						<label for="guide3">Павел</label>
+						<input type="radio" name="guide" id="guide3_3">
+						<label for="guide3">Андрій</label>
+					</div>
+				</form>
+			</section>
+			<hr>
+			<div>Загалом : <span id="result"></span></div>
+			<button>Загальна вартісь</button>
+		</form>
+	</div>
+
+</body>
+
+</html>
